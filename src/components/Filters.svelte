@@ -16,9 +16,7 @@
     let selectedConstellation = constellations[0];
 
     async function fetchStars() {
-        const API_URL = `${
-            import.meta.env.VITE_API_BASE_URL
-        }/constellation?constellation=${selectedConstellation}`;
+        const API_URL = `http://api.starbugs.sweavs.de/constellation?constellation=${selectedConstellation}`;
          console.log(API_URL);
         try {
             const response = await axios.get(API_URL);
