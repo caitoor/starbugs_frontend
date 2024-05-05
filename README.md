@@ -1,17 +1,3 @@
-# Constellarium
+# Starbugs
 
-This is the frontend of a docker course demo setup using Docker + Vite.
-
-To run it, install all dependencies:
-
-```
-npm install
-```
-
-Then run it on your local dev server:
-
-```
-npm run dev
-```
-
-Or use the provided Dockerfile to build a docker image.
+frontend of starbugs, used together with starbugs API to filter star data. A demo project for iot3 - software design and application of distributed systems.
