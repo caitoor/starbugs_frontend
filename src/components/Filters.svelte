@@ -1,6 +1,6 @@
 <script>
     import { resultsStore } from "../store.js";
-    /*     import { onMount } from "svelte";*/
+    import { onMount } from "svelte";
     import axios from "axios";
 
     let constellations = [
@@ -17,8 +17,8 @@
 
     async function fetchStars() {
         // api url is constructed from docker-compose envs:
+        console.log("fetching stars...");
         const API_URL = `${import.meta.env.VITE_API_BASE_URL}/constellation?constellation=${selectedConstellation}`;
-        console.log(API_URL);
 
         try {
             const response = await axios.get(API_URL);
@@ -28,9 +28,10 @@
         }
     }
 
-    /* onMount(() => {
-        fetchStars();
-    }); */
+    onMount(() => {
+        console.log(`VITE_API_BASE_URL: ${import.meta.env.VITE_API_BASE_URL}/`);
+        // fetchStars();
+    });
 
     $: selectedConstellation, fetchStars();
 </script>
