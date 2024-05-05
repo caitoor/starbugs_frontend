@@ -1,6 +1,6 @@
 <script>
     import { resultsStore } from "../store.js";
-    import { onMount } from "svelte";
+    /*     import { onMount } from "svelte";*/
     import axios from "axios";
 
     let constellations = [
@@ -16,19 +16,21 @@
     let selectedConstellation = constellations[0];
 
     async function fetchStars() {
-        const API_URL = `http://api.starbugs.sweavs.de/constellation?constellation=${selectedConstellation}`;
-         console.log(API_URL);
+        // api url is constructed from docker-compose envs:
+        const API_URL = `${import.meta.env.VITE_API_BASE_URL}/constellation?constellation=${selectedConstellation}`;
+        console.log(API_URL);
+
         try {
             const response = await axios.get(API_URL);
             resultsStore.set(response.data);
         } catch (error) {
-            console.error("Fehler beim Abrufen der Sterndaten:", error);
+            console.error("error fetching star data:", error);
         }
     }
 
-    onMount(() => {
+    /* onMount(() => {
         fetchStars();
-    });
+    }); */
 
     $: selectedConstellation, fetchStars();
 </script>
