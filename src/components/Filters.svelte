@@ -17,9 +17,8 @@
 
     async function fetchStars() {
         // api url is constructed from docker-compose envs:
-        console.log("fetching stars...");
-        //const API_URL = `${import.meta.env.VITE_API_BASE_URL}/constellation?constellation=${selectedConstellation}`;
-        const API_URL = `https://starbugs_api.sweavs.de/constellation?constellation=${selectedConstellation}`;
+        console.log(`fetching stars for ${selectedConstellation}...`);
+        const API_URL = `${import.meta.env.VITE_API_BASE_URL}/constellation?constellation=${selectedConstellation}`;
 
         try {
             const response = await axios.get(API_URL);
@@ -31,11 +30,6 @@
 
     onMount(() => {
         console.log("starbugs frontend mounted.");
-
-        // this leads to empty env varibale in the container:
-        // console.log(`VITE_API_BASE_URL: ${import.meta.env.VITE_API_BASE_URL}/`);
-
-        // fetchStars();
     });
 
     $: selectedConstellation, fetchStars();
