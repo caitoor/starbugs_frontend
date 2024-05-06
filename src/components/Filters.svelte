@@ -30,7 +30,11 @@
     }
 
     onMount(() => {
-        console.log(`VITE_API_BASE_URL: ${import.meta.env.VITE_API_BASE_URL}/`);
+        console.log("starbugs frontend mounted.");
+
+        // this leads to empty env varibale in the container:
+        // console.log(`VITE_API_BASE_URL: ${import.meta.env.VITE_API_BASE_URL}/`);
+
         // fetchStars();
     });
 
