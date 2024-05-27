@@ -2,7 +2,6 @@
     import { resultsStore } from "../store.js";
     import { onMount } from "svelte";
     import axios from "axios";
-
     let constellations = [
         "ORI",
         "SCO",
@@ -18,7 +17,10 @@
     async function fetchStars() {
         // api url is constructed from docker-compose envs:
         console.log(`fetching stars for ${selectedConstellation}...`);
-        const API_URL = `${import.meta.env.VITE_API_BASE_URL}/constellation?constellation=${selectedConstellation}`;
+        const baseUrl =
+            import.meta.env.VITE_API_BASE_URL || "https://starbugs_api.sweavs.de";
+        console.log("baseUrl:", baseUrl);
+        const API_URL = `${baseUrl}/constellation?constellation=${selectedConstellation}`;
 
         try {
             const response = await axios.get(API_URL);
